@@ -188,7 +188,7 @@ def find_class_schedule(class_name, day):
 
 def prepare(day, surname):
     name = ""
-    
+
     student_code = find_code_by_surname(data, surname)
 
     if len(student_code) == 0:
@@ -233,17 +233,18 @@ def main():
     found_rooms = []
 
     if surname:
-        
+
         name, student_code, times, email, updated_periods, updated_room, found_rooms = prepare(day, surname)
-        
+
         periods_busy = convert_to_times(updated_periods)
-        
+
     if st.button("Find"):
         if not times:
             return "", "No avaiable times"
         else:
             st.markdown(f"### Student's Name: **{name} {surname}**")
             st.markdown(f"### Student's Email: **{email}**")
+            st.metric(label="on", value=f"{day}", delta=f"{len(times)} Free Periods")
             st.write(f"Available {day} Times:")
             time_df = pd.DataFrame({
                 'Time Slot': times
