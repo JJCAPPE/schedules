@@ -234,16 +234,21 @@ def main():
 
     if surname:
 
+        progress_text = "Operation in progress. Please wait."
+        my_bar = st.progress(0, text=progress_text)
+
         name, student_code, times, email, updated_periods, updated_room, found_rooms = prepare(day, surname)
 
         periods_busy = convert_to_times(updated_periods)
+
+        my_bar.empty()
 
     if st.button("Find"):
         if not times:
             return "", "No avaiable times"
         else:
-            st.markdown(f"### Student's Name: **{name} {surname}**")
-            st.markdown(f"### Student's Email: **{email}**")
+            st.markdown(f"### Name: **{name} {surname}**")
+            st.markdown(f"### Email: **{email}**")
             st.metric(label="", value=f"{day}", delta=f"{len(times)} Free Periods")
             st.write(f"Available {day} Times:")
             time_df = pd.DataFrame({
