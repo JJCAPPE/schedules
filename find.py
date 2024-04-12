@@ -244,7 +244,7 @@ def main():
         else:
             st.markdown(f"### Student's Name: **{name} {surname}**")
             st.markdown(f"### Student's Email: **{email}**")
-            st.metric(value=f"{day}", delta=f"{len(times)} Free Periods")
+            st.metric(label="", value=f"{day}", delta=f"{len(times)} Free Periods")
             st.write(f"Available {day} Times:")
             time_df = pd.DataFrame({
                 'Time Slot': times
